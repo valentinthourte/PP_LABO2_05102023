@@ -39,7 +39,6 @@ namespace Entidades
         public void Calcular(char operador)
         {
             double valorNumericoResultado = double.MinValue;
-            // Verifico que no sean nulos y que sean del mismo tipo
             if (PuedoCalcular())
             {
                 switch(operador)
@@ -66,8 +65,12 @@ namespace Entidades
                             break;
                         }
                 }
+                this.resultado = MapeaResultado(valorNumericoResultado);
             }
-            this.resultado = MapeaResultado(valorNumericoResultado);
+            else
+            {
+                throw new Exception("No se puede operar: Los operandos son de distinto tipo o contienen valores inválidos.");
+            }
         }
 
         private bool PuedoCalcular()

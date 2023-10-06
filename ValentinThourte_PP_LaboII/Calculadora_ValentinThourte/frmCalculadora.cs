@@ -13,16 +13,23 @@ namespace Calculadora_ValentinThourte
 
         private void btnOperar_Click(object sender, EventArgs e)
         {
-            char operador;
-            calculadora.PrimerOperando =
-            this.GetOperando(this.txtPrimerOperador.Text);
-            calculadora.SegundoOperando =
-            this.GetOperando(this.txtSegundoOperador.Text);
-            operador = (char)this.cmbOperacion.SelectedItem;
-            this.calculadora.Calcular(operador);
-            this.calculadora.ActualizaHistorialDeOperaciones(operador);
-            this.lblResultado.Text = $"Resultado:  {calculadora.Resultado.Valor}";
-            this.MostrarHistorial();
+            try
+            {
+                char operador;
+                calculadora.PrimerOperando =
+                this.GetOperando(this.txtPrimerOperador.Text);
+                calculadora.SegundoOperando =
+                this.GetOperando(this.txtSegundoOperador.Text);
+                operador = (char)this.cmbOperacion.SelectedItem;
+                this.calculadora.Calcular(operador);
+                this.calculadora.ActualizaHistorialDeOperaciones(operador);
+                this.lblResultado.Text = $"Resultado:  {calculadora.Resultado.Valor}";
+                this.MostrarHistorial();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void MostrarHistorial()
