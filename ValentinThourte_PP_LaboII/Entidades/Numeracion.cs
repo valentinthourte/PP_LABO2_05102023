@@ -14,7 +14,7 @@
         }
         public Numeracion()
         {
-
+            this.valor = Numeracion.msgError;
         }
 
         protected Numeracion(string valor)
@@ -40,7 +40,11 @@
             return (!(string.IsNullOrEmpty(valor?.Trim())));
         }
 
-        public static bool operator ==(Numeracion numero1, Numeracion numero2) => numero1.GetType() == numero2.GetType();
+        public static bool operator ==(Numeracion numero1, Numeracion numero2)
+        {
+
+            return numero1 is not null && numero2 is not null && numero1.GetType() == numero2.GetType();
+        }
         public static bool operator !=(Numeracion numero1, Numeracion numero2) => !(numero1 == numero2);
 
         public static explicit operator double(Numeracion numeracion)
